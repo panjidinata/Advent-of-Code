@@ -20,25 +20,23 @@ func GetNumOfDialAtZero(rotationSeq []string) (int, error) {
 			after, _ := strings.CutPrefix(seq, "L")
 			if num, err := strconv.Atoi(after); err == nil {
 				currHead = currHead - num
-				if (currHead % 100) == 0 {
-					currHead = 0
+				currHead = currHead % 100
+
+				if currHead == 0 {
 					result += 1
 				} else if currHead < 0 {
-					currHead += 100
-					if currHead > 100 {
-						currHead = currHead % 100
-					}
+					currHead = currHead + 100
 				}
+
 			}
 		} else if strings.HasPrefix(seq, "R") {
 			after, _ := strings.CutPrefix(seq, "R")
 			if num, err := strconv.Atoi(after); err == nil {
 				currHead = currHead + num
-				if (currHead % 100) == 0 {
-					currHead = 0
+				currHead = currHead % 100
+
+				if currHead == 0 {
 					result += 1
-				} else if currHead > 100 {
-					currHead = currHead % 100
 				}
 			}
 		}
